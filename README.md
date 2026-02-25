@@ -1,2 +1,163 @@
 # LIA-Helper
-Personal CRM-style web app for managing LIA (internship) applications
+Personal CRM-style web app for managing LIA (internship) applications.
+ 
+Problem:
+
+Applying for LIA often becomes messy:
+
+Multiple companies
+
+Different application statuses
+
+Missed follow-ups
+
+Scattered notes and emails
+
+Students often manage this manually in spreadsheets or notes, which increases stress and reduces clarity.
+
+Solution:
+
+LIA Helper works as a lightweight personal CRM for LIA applications.
+
+The application allows you to:
+
+Add and manage companies
+
+Track application status
+
+Set follow-up dates
+
+View reminders (Overdue / Today / Upcoming)
+
+Generate simple email templates
+
+The goal is to move from chaos to clarity.
+
+Tech Stack
+
+Next.js
+
+SQLite
+
+better-sqlite3
+
+Raw SQL (no ORM)
+
+TypeScript
+
+This project intentionally avoids ORMs in order to strengthen understanding of relational databases and SQL.
+
+Features (v1)
+
+Create companies
+
+Track application status
+
+Update follow-up dates
+
+Dashboard overview
+
+Email template generation
+
+Database reset with seed data
+
+Database Structure
+companies
+
+id (primary key)
+
+name
+
+website
+
+location
+
+notes
+
+created_at
+
+applications
+
+id (primary key)
+
+company_id (foreign key)
+
+status
+
+last_contact_at
+
+next_followup_at
+
+priority
+
+match_score
+
+contact_channel
+
+contact_person
+
+Getting Started
+
+1. Clone the repository
+
+git clone https://github.com/yourusername/lia-helper.git
+cd lia-helper
+
+2. Install dependencies
+
+npm install
+
+3. Create database
+
+sqlite3 lia.db < db/schema.sql
+sqlite3 lia.db < db/seed.sql
+
+4. Start development server
+
+npm run dev
+
+Open:
+
+http://localhost:3000
+Project Structure
+/db
+  schema.sql
+  seed.sql
+
+/lib
+  db.ts
+  queries.ts
+
+/app
+  /api
+  /companies
+  /dashboard
+Learning Goals
+
+Strengthen SQL knowledge
+
+Understand relational database design
+
+Build a fullstack application without an ORM
+
+Improve backend architecture skills
+
+Roadmap
+
+ Database schema
+
+ API endpoints
+
+ Companies UI
+
+ Dashboard
+
+ Email templates
+
+ Next-step logic
+
+ Deployment
+
+Author
+
+Built independently as a devops student. 
