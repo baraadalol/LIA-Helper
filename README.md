@@ -218,4 +218,12 @@ Roadmap
 
 Author
 
+## VM Backup (restic + systemd)
+
+For a production-ready `systemd` timer and service that runs a restic backup
+from one VM to another over SSH (5 minutes after boot), see:
+
+- `docs/RESTIC_VM_BACKUP.md`
+- `ops/restic-systemd/`
+
 Built independently as a devops student. 
