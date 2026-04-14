@@ -1,229 +1,150 @@
-# LIA-Helper
-Personal CRM-style web app for managing LIA (internship) applications.
- 
-Problem:
+# LIA Helper
+
+A personal CRM-style web application for managing LIA (internship) applications.
+
+Built as a fullstack project using Next.js and SQLite, with a focus on understanding relational databases and backend logic without using an ORM.
+
+---
+
+## ✨ Features
+
+- Track companies and LIA applications
+- Update application status
+- Set follow-up dates
+- Dashboard with:
+  - Overdue follow-ups
+  - Today’s tasks
+  - Upcoming tasks (next 7 days)
+- Add new companies
+- Real-time updates via API
+
+---
+
+## 🧠 Problem
 
 Applying for LIA often becomes messy:
 
-Multiple companies
+- Multiple companies
+- Different application statuses
+- Missed follow-ups
+- Scattered notes and emails
 
-Different application statuses
+This is often handled manually in spreadsheets or notes, which reduces clarity and increases stress.
 
-Missed follow-ups
+---
 
-Scattered notes and emails
+## 💡 Solution
 
-Students often manage this manually in spreadsheets or notes, which increases stress and reduces clarity.
+LIA Helper acts as a lightweight personal CRM system that helps you:
 
-Solution:
+- Stay organized
+- Track your progress
+- Know exactly what to do next
 
-LIA Helper works as a lightweight personal CRM for LIA applications.
+---
 
-The application allows you to:
+## 🛠 Tech Stack
 
-Add and manage companies
+- **Frontend:** Next.js (App Router)
+- **Backend:** Next.js API Routes
+- **Database:** SQLite
+- **Driver:** better-sqlite3
+- **Language:** TypeScript
+- **Querying:** Raw SQL (no ORM)
 
-Track application status
+---
 
-Set follow-up dates
-
-View reminders (Overdue / Today / Upcoming)
-
-Generate simple email templates
-
-The goal is to move from chaos to clarity.
-
-Tech Stack
-
-Next.js
-
-SQLite
-
-better-sqlite3
-
-Raw SQL (no ORM)
-
-TypeScript
-
-This project intentionally avoids ORMs in order to strengthen understanding of relational databases and SQL.
-
-Features (v1)
-
-Create companies
-
-Track application status
-
-Update follow-up dates
-
-Dashboard overview
-
-Email template generation
-
-Database reset with seed data
-
-Database Structure
-companies
-
-id (primary key)
-
-name
-
-website
-
-location
-
-notes
-
-created_at
-
-applications
-
-id (primary key)
-
-company_id (foreign key)
-
-status
-
-last_contact_at
-
-next_followup_at
-
-priority
-
-match_score
-
-contact_channel
-
-contact_person
-
-Getting Started
-
-1. Clone the repository
-
-git clone https://github.com/yourusername/lia-helper.git
-cd lia-helper
-
-2. Install dependencies
-
-npm install
-
-3. Create database
-
-sqlite3 lia.db < db/schema.sql
-sqlite3 lia.db < db/seed.sql
-
-Week 1 (Databasgrunden)
-
-Status-lista (valideras i `db/schema.sql`):
-
-- `not_contacted`
-- `contacted`
-- `replied`
-- `interview`
-- `offer`
-- `accepted`
-- `rejected`
-- `ghosted`
-
-Manuell test i `sqlite3`
-
-```bash
-sqlite3 lia.db
-```
-
-```sql
-PRAGMA foreign_keys = ON;
-.read db/schema.sql
-.read db/seed.sql
-
--- SELECT
-SELECT id, name, location FROM companies ORDER BY name;
-
--- INSERT
-INSERT INTO companies (id, name, website, location, tags, notes)
-VALUES ('c_demo', 'Demo AB', 'https://example.com', 'Stockholm', 'demo', 'Testbolag');
-
-INSERT INTO applications (
-  id, company_id, status, priority, match_score, next_followup_at, contact_channel
-) VALUES (
-  'a_demo', 'c_demo', 'not_contacted', 3, 70, date('now','+3 day'), 'email'
-);
-
--- UPDATE
-UPDATE applications
-SET status = 'contacted',
-    last_contact_at = date('now')
-WHERE id = 'a_demo';
-
--- JOIN (companies ↔ applications)
-SELECT
-  c.name AS company,
-  a.status,
-  a.priority,
-  a.next_followup_at
-FROM applications a
-JOIN companies c ON c.id = a.company_id
-ORDER BY a.priority DESC, c.name;
-
--- DELETE
-DELETE FROM applications WHERE id = 'a_demo';
-DELETE FROM companies WHERE id = 'c_demo';
-```
-
-4. Start development server
-
-npm run dev
-
-Open:
-
-http://localhost:3000
-Project Structure
-/db
-  schema.sql
-  seed.sql
-
-/lib
-  db.ts
-  queries.ts
+## 📦 Project Structure
 
 /app
-  /api
-  /companies
-  /dashboard
-Learning Goals
+/api
+/companies
+/dashboard
 
-Strengthen SQL knowledge
+/lib
+db.ts
+queries.ts
 
-Understand relational database design
+/db
+schema.sql
+seed.sql
 
-Build a fullstack application without an ORM
+## Getting Started
 
-Improve backend architecture skills
+### 1. Clone the repo
 
-Roadmap
+```bash
+git clone https://github.com/YOUR_USERNAME/lia-helper.git
+cd lia-helper
+´´´
+### 2. Install dependencies
 
- Database schema
+```bash
+npm install
+```
+### 3. Create the database
 
- API endpoints
+```bash
+sqlite3 data/lia.db < db/schema.sql
+sqlite3 data/lia.db < db/seed.sql
+```
 
- Companies UI
+### 4. Start development server
 
- Dashboard
+```bash
+npm run dev
+```
+open:
+http://localhost:3000
 
- Email templates
+# Database Overview
 
- Next-step logic
+## companies
 
- Deployment
+- id
+- name
+- website
+- location
+- tags
+- notes
+- created_at
 
-Author
+## applications
 
-## VM Backup (restic + systemd)
+- id
+- company_id (foreign key)
+- status
+- priority
+- match_score
+- last_contact_at
+- next_followup_at
+- contact_channel
+- contact_person
+- created_at
+- updated_at
 
-For a production-ready `systemd` timer and service that runs a restic backup
-from one VM to another over SSH (5 minutes after boot), see:
+## Learning Goals
 
-- `docs/RESTIC_VM_BACKUP.md`
-- `ops/restic-systemd/`
+- Strengthen SQL and database design skills
+- Understand relational data modeling
+- Build a fullstack app without an ORM
+- Work with API routes and server components
+- Practice real-world CRUD operations
 
-Built independently as a devops student. 
+## Roadmap
+
+- [x] Database schema
+- [x] API endpoints
+- [x] Companies page
+- [x] Dashboard
+- [x] Update status
+- [x] Follow-up date editing
+- [x] Add company
+- [] Delete company
+- [] Priority editing
+- [] UI improvements
+- [] Company detail page
+
+# Author
+Built independently as a DevOps student that needed a tool in the LIA (internship) searching process.
+
