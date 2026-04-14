@@ -6,7 +6,7 @@ Built as a fullstack project using Next.js and SQLite, with a focus on understan
 
 ---
 
-## ✨ Features
+## Features
 
 - Track companies and LIA applications
 - Update application status
@@ -20,7 +20,7 @@ Built as a fullstack project using Next.js and SQLite, with a focus on understan
 
 ---
 
-## 🧠 Problem
+## Problem
 
 Applying for LIA often becomes messy:
 
@@ -33,7 +33,7 @@ This is often handled manually in spreadsheets or notes, which reduces clarity a
 
 ---
 
-## 💡 Solution
+## Solution
 
 LIA Helper acts as a lightweight personal CRM system that helps you:
 
@@ -43,7 +43,7 @@ LIA Helper acts as a lightweight personal CRM system that helps you:
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Frontend:** Next.js (App Router)
 - **Backend:** Next.js API Routes
@@ -52,9 +52,8 @@ LIA Helper acts as a lightweight personal CRM system that helps you:
 - **Language:** TypeScript
 - **Querying:** Raw SQL (no ORM)
 
----
 
-## 📦 Project Structure
+##  Project Structure
 
 /app
 /api
@@ -140,10 +139,10 @@ http://localhost:3000
 - [x] Update status
 - [x] Follow-up date editing
 - [x] Add company
-- [] Delete company
-- [] Priority editing
-- [] UI improvements
-- [] Company detail page
+- [ ] Delete company
+- [ ] Priority editing
+- [ ] UI improvements
+- [ ] Company detail page
 
 # Author
 Built independently as a DevOps student that needed a tool in the LIA (internship) searching process.
