@@ -1,6 +1,7 @@
 import StatusSelect from "./status-select";
 import AddCompanyForm from "./add-company-form";
 import DatePicker from "./date-picker";
+import DeleteCompanyButton from "./delete-company-button";
 
 async function getCompanies() {
   const res = await fetch("http://localhost:3000/api/companies", {
@@ -56,6 +57,11 @@ export default async function CompaniesPage() {
               ) : (
                 <p>No application yet.</p>
               )}
+
+              <DeleteCompanyButton
+                companyId={c.id}
+                companyName={c.name}
+              />
             </div>
           ))}
         </>

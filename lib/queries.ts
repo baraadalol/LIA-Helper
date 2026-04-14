@@ -82,3 +82,12 @@ export function updateFollowUpDate(id: string, date: string) {
     `)
     .run(date, id);
 }
+
+export function deleteCompany(id: string) {
+  return db
+    .prepare(`
+      DELETE FROM companies
+      WHERE id = ?
+    `)
+    .run(id);
+}

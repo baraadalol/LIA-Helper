@@ -3,6 +3,7 @@ import {
   getAllCompanies,
   createCompany,
   createApplication,
+  deleteCompany,
 } from "../../../lib/queries";
 
 export async function GET() {
@@ -30,6 +31,18 @@ export async function POST(req: Request) {
     company_id: id,
     status: "not_contacted",
   });
+
+  return NextResponse.json({ ok: true });
+}
+
+export async function DELETE(req: Request) {
+  const body = await req.json();
+
+  if (!body.id) {
+    return NextResponse.json({ error: "Missing company id" }, { status: 400 });
+  }
+
+  deleteCompany(body.id);
 
   return NextResponse.json({ ok: true });
 }
