@@ -2,6 +2,7 @@ import StatusSelect from "./status-select";
 import AddCompanyForm from "./add-company-form";
 import DatePicker from "./date-picker";
 import DeleteCompanyButton from "./delete-company-button";
+import PrioritySelect from "./priority-select";
 
 async function getCompanies() {
   const res = await fetch("http://localhost:3000/api/companies", {
@@ -52,6 +53,11 @@ export default async function CompaniesPage() {
                   <DatePicker
                     applicationId={c.application_id}
                     currentDate={c.next_followup_at}
+                  />
+
+                  <PrioritySelect
+                    applicationId={c.application_id}
+                    currentPriority={c.priority}
                   />
                 </>
               ) : (

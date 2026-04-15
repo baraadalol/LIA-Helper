@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   updateApplicationStatus,
   updateFollowUpDate,
+  updateApplicationPriority,
 } from "../../../../lib/queries";
 
 export async function PATCH(
@@ -17,6 +18,10 @@ export async function PATCH(
 
   if (body.next_followup_at) {
     updateFollowUpDate(params.id, body.next_followup_at);
+  }
+
+  if (body.priority !== undefined) {
+    updateApplicationPriority(params.id, Number(body.priority));
   }
 
   return NextResponse.json({ ok: true });

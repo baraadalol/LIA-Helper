@@ -1,4 +1,3 @@
-
 import { db } from "./db";
 
 export function getAllCompanies() {
@@ -12,6 +11,7 @@ export function getAllCompanies() {
         c.tags,
         c.notes,
         c.created_at,
+        a.id AS application_id,
         a.status,
         a.priority,
         a.match_score,
@@ -26,7 +26,6 @@ export function getAllCompanies() {
     `)
     .all();
 }
-
 export function updateApplicationStatus(id: string, status: string) {
   return db
     .prepare(`
@@ -90,4 +89,14 @@ export function deleteCompany(id: string) {
       WHERE id = ?
     `)
     .run(id);
+}
+
+export function updateApplicationPriority(id: string, priority: number) {
+  return db
+    .prepare(`
+      UPDATE applications
+      SET priority = ?, updated_at = date('now')
+      WHERE id = ?
+    `)
+    .run(priority, id);
 }
