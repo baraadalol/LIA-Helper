@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint ."
   },
   "dependencies": {
     "better-sqlite3": "^12.9.0",
@@ -17,6 +18,8 @@
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "25.6.0",
     "@types/react": "19.2.14",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.3",
     "typescript": "6.0.2"
   }
 }
