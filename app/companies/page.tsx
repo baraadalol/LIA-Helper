@@ -3,6 +3,7 @@ import AddCompanyForm from "./add-company-form";
 import DatePicker from "./date-picker";
 import DeleteCompanyButton from "./delete-company-button";
 import PrioritySelect from "./priority-select";
+import Link from "next/link";
 
 async function getCompanies() {
   const res = await fetch("http://localhost:3000/api/companies", {
@@ -38,7 +39,15 @@ export default async function CompaniesPage() {
                 marginBottom: "12px",
               }}
             >
-              <h2>{c.name}</h2>
+              <h2>
+                <a
+                  href={`/companies/${c.id}`}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {c.name}
+                </a>
+              </h2>
+
               <p>Status: {c.status ?? "No status"}</p>
               <p>Priority: {c.priority ?? "-"}</p>
               <p>Next follow-up: {c.next_followup_at ?? "Not set"}</p>

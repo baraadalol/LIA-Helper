@@ -100,3 +100,30 @@ export function updateApplicationPriority(id: string, priority: number) {
     `)
     .run(priority, id);
 }
+
+export function getCompanyById(id: string) {
+  return db
+    .prepare(`
+      SELECT
+        c.id,
+        c.name,
+        c.website,
+        c.location,
+        c.tags,
+        c.notes,
+        c.created_at,
+        a.id AS application_id,
+        a.status,
+        a.priority,
+        a.match_score,
+        a.last_contact_at,
+        a.next_followup_at,
+        a.contact_channel,
+        a.contact_person,
+        a.updated_at
+      FROM companies c
+      LEFT JOIN applications a ON a.company_id = c.id
+      WHERE c.id = ?
+    `)
+    .get(id);
+}
