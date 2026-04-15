@@ -139,8 +139,8 @@ http://localhost:3000
 - [x] Update status
 - [x] Follow-up date editing
 - [x] Add company
-- [x ] Delete company
-- [ ] Priority editing
+- [x] Delete company
+- [x] Priority editing
 - [ ] UI improvements
 - [ ] Company detail page
 
