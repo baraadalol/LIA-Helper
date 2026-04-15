@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+import EditCompanyForm from "./edit-company-form";
 
 async function getCompany(id: string) {
   const res = await fetch(`http://localhost:3000/api/companies/${id}`, {
@@ -59,6 +60,13 @@ export default async function CompanyDetailPage({
           <p><strong>Contact channel:</strong> {company.contact_channel || "Not set"}</p>
           <p><strong>Notes:</strong> {company.notes || "No notes yet"}</p>
         </div>
+  
+        <EditCompanyForm
+          companyId={company.id}
+          initialNotes={company.notes}
+          initialContactPerson={company.contact_person}
+          initialContactChannel={company.contact_channel}
+        />
       </div>
     </main>
   );

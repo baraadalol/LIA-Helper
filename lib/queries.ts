@@ -127,3 +127,38 @@ export function getCompanyById(id: string) {
     `)
     .get(id);
 }
+
+export function updateCompanyDetails(data: {
+  id: string;
+  notes?: string;
+  contact_person?: string;
+  contact_channel?: string;
+}) {
+  return db
+    .prepare(`
+      UPDATE applications
+      SET
+        contact_person = ?,
+        contact_channel = ?,
+        updated_at = date('now')
+      WHERE company_id = ?
+    `)
+    .run(
+      data.contact_person ?? "",
+      data.contact_channel ?? "",
+      data.id
+    );
+}
+
+export function updateCompanyNotes(data: {
+  id: string;
+  notes?: string;
+}) {
+  return db
+    .prepare(`
+      UPDATE companies
+      SET notes = ?
+      WHERE id = ?
+    `)
+    .run(data.notes ?? "", data.id);
+}
