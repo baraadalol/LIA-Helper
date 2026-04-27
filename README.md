@@ -149,3 +149,13 @@ http://localhost:3000
 # Author
 Built independently as a DevOps student that needed a tool in the LIA (internship) searching process.
 
+## Kubernetes
+
+The app can be deployed locally to Kubernetes using Minikube.
+
+```bash
+kubectl apply -f k8s/
+kubectl get pods
+kubectl get services
+minikube service lia-helper-service
+```
