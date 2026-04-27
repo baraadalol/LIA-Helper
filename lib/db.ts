@@ -1,13 +1,31 @@
 import Database from "better-sqlite3";
-import path from "path";
 import fs from "fs";
+import path from "path";
 
-const dataDir = path.join(process.cwd(), "data");
-const dbPath = path.join(dataDir, "lia.db");
+const dbPath = path.join(process.cwd(), "data", "lia.db");
 
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir, { recursive: true });
-}
+// skapa mapp om den inte finns
+fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
-export const db = new Database(dbPath);
-db.pragma("foreign_keys = ON");
+const db = new Database(dbPath);
+
+// skapa tabeller om de inte finns
+db.exec(`
+CREATE TABLE IF NOT EXISTS companies (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT,
+  website TEXT,
+  location TEXT,
+  notes TEXT
+);
+
+CREATE TABLE IF NOT EXISTS applications (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  company_id INTEGER,
+  status TEXT,
+  priority INTEGER,
+  FOREIGN KEY (company_id) REFERENCES companies(id)
+);
+`);
+
+export default db;
