@@ -28,4 +28,5 @@ CREATE TABLE IF NOT EXISTS applications (
 );
 `);
 
-export default db;
+export const db = new Database(dbPath);
+db.pragma("foreign_keys = ON");
