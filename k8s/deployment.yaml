@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lia-helper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lia-helper
+  template:
+    metadata:
+      labels:
+        app: lia-helper
+    spec:
+      containers:
+        - name: lia-helper
+          image: ghcr.io/baraadalol/lia-helper:latest
+          ports:
+            - containerPort: 3000
