@@ -1,6 +1,6 @@
 ![CI](https://github.com/baraadalol/lia-helper/actions/workflows/ci.yml/badge.svg)
 
-# LIA Helper
+# ApplyFlow
 
 A personal CRM-style web application for managing LIA (internship) applications.
 
